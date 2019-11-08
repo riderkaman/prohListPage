@@ -1,5 +1,6 @@
 package com.test.dao;
 
+import com.test.vo.ProhListVO;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -18,8 +19,13 @@ public class MainDaoImpl implements MainDao{
     private static final String namespace = "com.test.dao.MainDao";
 
     @Override
-    public List<Map> getProhList() {
+    public List<ProhListVO> getProhList(Map<String, Object> param) {
 
-        return sqlSession.selectList(namespace + ".getProhList");
+        return sqlSession.selectList(namespace + ".getProhList", param);
+    }
+
+    @Override
+    public int getTotalCountProhList() {
+        return sqlSession.selectOne(namespace + ".getTotalCountProhList");
     }
 }

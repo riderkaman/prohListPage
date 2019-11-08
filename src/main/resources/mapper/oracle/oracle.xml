@@ -3,7 +3,20 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.test.dao.MainDao">
-    <select id="getProhList" resultType="java.util.Map">
-        select * from prohList
+    <select id="getProhList" parameterType="java.util.Map" resultType="com.test.vo.ProhListVO">
+        select * from(
+        select rownum as rnum, p.* from
+        (select no, word, name, to_char(registerTime, 'yyyy/mm/dd hh24:mi') registerTime
+        from prohList
+        <![CDATA[
+         order by registerTime, no) p where rownum <= #{endNum}
+        ) where rnum >= #{startNum}
+        ]]>
     </select>
+
+    <select id="getTotalCountProhList" resultType="int">
+        select count(*)
+        from prohList
+    </select>
+
 </mapper>

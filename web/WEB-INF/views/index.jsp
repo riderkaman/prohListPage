@@ -17,12 +17,12 @@
   <body>
 hello world
 ${home}
-  <button id="getBtn">가져오기</button>
+  <button id="getBtn1">페이징리스트</button>
 
   <script type="text/javascript">
-      document.getElementById("getBtn").onclick = function (ev) {
+      document.getElementById("getBtn1").onclick = function (ev) {
         // console.log('클릭됨');
-        location.href = 'getProhList';
+        location.href = 'getProhListPaging';
       }
   </script>
   </body>
