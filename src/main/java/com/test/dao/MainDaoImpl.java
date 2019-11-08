@@ -20,7 +20,6 @@ public class MainDaoImpl implements MainDao{
 
     @Override
     public List<ProhListVO> getProhList(Map<String, Object> param) {
-
         return sqlSession.selectList(namespace + ".getProhList", param);
     }
 
@@ -28,4 +27,15 @@ public class MainDaoImpl implements MainDao{
     public int getTotalCountProhList() {
         return sqlSession.selectOne(namespace + ".getTotalCountProhList");
     }
+
+    @Override
+    public int getProhWordExistCount(Map<String, Object> param) {
+        return sqlSession.selectOne(namespace + ".getProhWordExistCount", param);
+    }
+
+    @Override
+    public void insertProhWord(Map<String, Object> param) {
+        sqlSession.insert(namespace + ".insertProhWord", param);
+    }
+
 }

@@ -60,7 +60,14 @@
     <jsp:param value="${paging.prev}" name="prev"/>
     <jsp:param value="${paging.next}" name="next"/>
 </jsp:include>
-
+<div>
+    <button id="wordInput">추가</button>
 </div>
+<script type="text/javascript">
+    document.getElementById("wordInput").onclick = function (ev) {
+        // console.log('클릭됨');
+        location.href = 'addWord';
+    }
+</script>
 </body>
 </html>

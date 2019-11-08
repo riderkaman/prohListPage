@@ -82,3 +82,7 @@ modules.xml
 
 # End of https://www.gitignore.io/api/intellij+iml
 /.idea/
+classes/
+lib/
+src/main/resources/conf-prohListPage.properties
+src/test/

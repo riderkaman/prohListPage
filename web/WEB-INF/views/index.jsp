@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: rider
@@ -6,17 +7,14 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
   <head>
-    <script
-            src="https://code.jquery.com/jquery-2.2.4.js"
-            integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
-            crossorigin="anonymous"></script>
-    <title>$Title$</title>
+    <script src="<c:url value="../resources/js/jquery-2.2.4.min.js" />"></script>
+    <title>Main</title>
   </head>
   <body>
-hello world
-${home}
+hello world<br>
   <button id="getBtn1">페이징리스트</button>
 
   <script type="text/javascript">

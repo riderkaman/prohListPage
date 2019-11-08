@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -55,5 +56,39 @@ public class MainController {
         model.addAttribute("list", mainService.getProhList(param));
         model.addAttribute("paging", paging);
         return "board/test";
+    }
+
+    @RequestMapping(value = "addWord")
+    public String addWord() {
+
+        return "board/addWord";
+    }
+
+    @RequestMapping(value = "insertWord")
+    @ResponseBody
+    public String insertWord(HttpServletRequest req, HttpServletResponse res) {
+
+        String result = "";
+        String word = req.getParameter("word");
+        String name = "관리자";
+        if (word == null || word.length() <= 0) {
+            result = "noword";
+            return result;
+        }
+
+        Map<String, Object> param = new HashMap<>();
+        param.put("word", word);
+        param.put("name", name);
+
+        int cnt = mainService.getProhWordExistCount(param);
+        if (cnt >= 1) {
+            result = "dup";
+            return result;
+        }
+
+        mainService.insertProhWord(param);
+        result = "success";
+
+        return result;
     }
 }

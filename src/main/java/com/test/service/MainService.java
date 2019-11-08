@@ -16,11 +16,18 @@ public class MainService {
     private MainDao dao;
 
     public List<ProhListVO> getProhList(Map<String, Object> param) {
-
         return dao.getProhList(param);
     }
 
     public int getTotalCountProhList() {
         return dao.getTotalCountProhList();
+    }
+
+    public void insertProhWord(Map<String, Object> param) {
+        dao.insertProhWord(param);
+    }
+
+    public int getProhWordExistCount(Map<String, Object> param) {
+        return dao.getProhWordExistCount(param);
     }
 }
