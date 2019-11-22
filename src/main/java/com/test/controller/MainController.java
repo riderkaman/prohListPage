@@ -2,6 +2,9 @@ package com.test.controller;
 
 import com.test.service.MainService;
 import com.test.vo.PagingVO;
+import com.test.vo.ProhListVO;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,7 +13,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -90,5 +96,41 @@ public class MainController {
         result = "success";
 
         return result;
+    }
+
+    @RequestMapping(value = "outFile")
+    @ResponseBody
+    public String outFile(HttpServletRequest req, HttpServletResponse res) {
+
+        String result = "";
+        List<ProhListVO> list = mainService.getProhWords();
+
+        JSONArray prohList = new JSONArray();
+
+        for (ProhListVO vo : list) {
+            JSONObject inner = new JSONObject();
+            inner.put("word", vo.getWord());
+            prohList.put(inner);
+        }
+
+        JSONObject outer = new JSONObject();
+
+        outer.put("prohList", prohList);
+
+        FileWriter writer = null;
+        try {
+            writer = new FileWriter("C:\\Users\\rider\\Documents\\prohList.json");
+            writer.write(outer.toString());
+            writer.flush();
+            writer.close();
+            result = "success";
+            return result;
+        } catch (IOException e) {
+            e.printStackTrace();
+            result = "fail";
+            return result;
+        }
+
+
     }
 }

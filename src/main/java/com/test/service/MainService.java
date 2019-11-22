@@ -30,4 +30,8 @@ public class MainService {
     public int getProhWordExistCount(Map<String, Object> param) {
         return dao.getProhWordExistCount(param);
     }
+
+    public List<ProhListVO> getProhWords() {
+        return dao.getProhWords();
+    }
 }

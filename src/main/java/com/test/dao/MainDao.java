@@ -16,4 +16,6 @@ public interface MainDao {
     public void insertProhWord(Map<String, Object> param);
 
     public int getProhWordExistCount(Map<String, Object> param);
+
+    public List<ProhListVO> getProhWords();
 }

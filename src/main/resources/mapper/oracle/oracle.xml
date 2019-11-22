@@ -30,4 +30,9 @@
         values( (select max(no) + 1 from prohList), #{word}, #{name})
     </insert>
 
+    <select id="getProhWords" resultType="com.test.vo.ProhListVO">
+        select word
+        from prohList
+    </select>
+
 </mapper>

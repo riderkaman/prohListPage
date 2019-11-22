@@ -24,10 +24,11 @@
             margin: auto;
         }
     </style>
+    <script src="../resources/js/jquery-2.2.4.min.js"></script>
 </head>
 <body>
 
-<table>
+<table id="tableId">
     <thead>
     <tr>
         <th>no.</th>
@@ -41,13 +42,13 @@
     <tbody>
     <c:forEach var="item" items="${list}" varStatus="status">
         <tr>
-            <!-- <td><c:out value="${item.rnum}" /></td> -->
-            <td><c:out value="${item.no}" /></td>
+            <td><c:out value="${item.rnum}" /></td>
+            <!-- <td><c:out value="${item.no}" /></td> -->
             <td><c:out value="${item.word}" /></td>
             <td><c:out value="${item.name}" /></td>
             <td><c:out value="${item.registerTime}" /></td>
-            <td><button>수정</button></td>
-            <td><button>삭제</button></td>
+            <td><button class="modWord" onclick="modWord(<c:out value="${item.no}" />)" >수정</button></td>
+            <td><button class="delWord" onclick="delWord(<c:out value="${item.no}" />)" >삭제</button></td>
         </tr>
     </c:forEach>
     </tbody>
@@ -63,10 +64,40 @@
 <div>
     <button id="wordInput">추가</button>
 </div>
+<div>
+    <button id="outFile">파일로 내보내기</button>
+</div>
 <script type="text/javascript">
     document.getElementById("wordInput").onclick = function (ev) {
         // console.log('클릭됨');
         location.href = 'addWord';
+    }
+
+    document.getElementById("outFile").onclick = function (ev) {
+        $.ajax({
+            url : "outFile",
+            type : "post",
+            success: function(data) {
+                console.log(data);
+                if (data == 'fail') {
+                    alert("뭔가 잘못되었습니다.");
+                } else if (data == 'success') {
+                    alert("파일 생성에 성공하였습니다.");
+                    location.href = "getProhListPaging"
+                }
+            },
+            error: function(err) {
+
+            }
+        })
+    }
+
+    function modWord(no) {
+        console.log(no);
+    }
+
+    function delWord(no) {
+        console.log(no);
     }
 </script>
 </body>

@@ -38,4 +38,8 @@ public class MainDaoImpl implements MainDao{
         sqlSession.insert(namespace + ".insertProhWord", param);
     }
 
+    @Override
+    public List<ProhListVO> getProhWords() {
+        return sqlSession.selectList(namespace + ".getProhWords");
+    }
 }

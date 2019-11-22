@@ -1,6 +1,5 @@
 package com.test.vo;
 
-
 public class ProhListVO {
 
     public ProhListVO() {
